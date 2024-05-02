@@ -1,0 +1,194 @@
+[
+  {
+    "firstname": "Ayush",
+    "lastname": "Kotadiya",
+    "age": "10",
+    "termsandconditions": "off",
+    "gender": "Male",
+    "country": "Us"
+  },
+  {
+    "firstname": "Ayush",
+    "lastname": "Kotadiya",
+    "age": "10",
+    "termsandconditions": "on",
+    "gender": "Male",
+    "country": "Us"
+  },
+  {
+    "firstname": "Doodhwala",
+    "lastname": "baldha",
+    "age": "20",
+    "termsandconditions": "on",
+    "gender": "Male",
+    "country": "Us"
+  },
+  {
+    "firstname": "Dhruv",
+    "lastname": "Baldha",
+    "age": "10",
+    "termsandconditions": "on",
+    "gender": "Male",
+    "country": "India"
+  },
+  {
+    "firstname": "Ayush",
+    "lastname": "Kotadiya",
+    "age": "10",
+    "termsandconditions": "on",
+    "gender": "Male",
+    "country": "Us"
+  },
+  {
+    "firstname": "Ayush",
+    "lastname": "Kotadiya",
+    "age": "10",
+    "termsandconditions": "on",
+    "gender": "Male",
+    "country": "India"
+  },
+  {
+    "firstname": "Ayush",
+    "lastname": "Kotadiya",
+    "age": "20",
+    "termsandconditions": "on",
+    "gender": "Male",
+    "country": "India"
+  },
+  {
+    "firstname": "Hinali",
+    "lastname": "Narola",
+    "age": "20",
+    "termsandconditions": "on",
+    "gender": "Female",
+    "country": "Us"
+  },
+  {
+    "firstname": "Ayush",
+    "lastname": "Kotadiya",
+    "age": "20",
+    "termsandconditions": true,
+    "gender": "Male",
+    "country": "India"
+  },
+  {
+    "firstname": "Deep",
+    "lastname": "Kaswala",
+    "age": "20",
+    "termsandconditions": true,
+    "gender": "Male",
+    "country": "India"
+  },
+  {
+    "firstname": "Harshil",
+    "lastname": "Pethani",
+    "age": "20",
+    "termsandconditions": true,
+    "gender": "Male",
+    "country": "India"
+  },
+  {
+    "firstname": "Bhavin",
+    "lastname": "Karena",
+    "age": "20",
+    "termsandconditions": true,
+    "gender": "Male",
+    "country": "India"
+  },
+  {
+    "firstname": "Umang",
+    "lastname": "Vora",
+    "age": "20",
+    "termsandconditions": true,
+    "gender": "Male",
+    "country": "India"
+  },
+  {
+    "firstname": "Raj",
+    "lastname": "Vasani",
+    "age": "20",
+    "termsandconditions": true,
+    "gender": "Male",
+    "country": "India"
+  },
+  {
+    "firstname": "Meet",
+    "lastname": "Vasani",
+    "age": "20",
+    "termsandconditions": true,
+    "gender": "Male",
+    "country": "India"
+  },
+  {
+    "firstname": "Darshan",
+    "lastname": "Kanani",
+    "age": "20",
+    "termsandconditions": true,
+    "gender": "Male",
+    "country": "India"
+  },
+  {
+    "firstname": "Shivam ",
+    "lastname": "Vora",
+    "age": "10",
+    "termsandconditions": true,
+    "gender": "Male",
+    "country": "India"
+  },
+  {
+    "firstname": "Ayush",
+    "lastname": "Kotadiya",
+    "age": "20",
+    "termsandconditions": true,
+    "gender": "Male",
+    "country": "India"
+  },
+  {
+    "firstname": "Ayush",
+    "lastname": "Kotadiya",
+    "age": "20",
+    "termsandconditions": true,
+    "gender": "Male",
+    "country": "India"
+  },
+  {
+    "firstname": "Harsh",
+    "lastname": "Sangani",
+    "age": "20",
+    "termsandconditions": true,
+    "gender": "Male",
+    "country": "India"
+  },
+  {
+    "firstname": "Dhruv",
+    "lastname": "Baldha",
+    "age": "20",
+    "termsandconditions": true,
+    "gender": "Male",
+    "country": "India"
+  },
+  {
+    "firstname": "Ayush",
+    "lastname": "Kotadiya",
+    "age": "20",
+    "termsandconditions": true,
+    "gender": "Male",
+    "country": "India"
+  },
+  {
+    "firstname": "Ayush",
+    "lastname": "Kotadiya",
+    "age": "20",
+    "termsandconditions": true,
+    "gender": "Male",
+    "country": "India"
+  },
+  {
+    "firstname": "Ayush",
+    "lastname": "Kotadiya",
+    "age": "20",
+    "termsandconditions": true,
+    "gender": "Male",
+    "country": "India"
+  }
+]
