@@ -56,6 +56,7 @@ const App = () => {
         console.log('Data saved successfully:', data);
         localStorage.setItem('savedFormDataValues', JSON.stringify(data.data))
         setSavedFormDataValues(data.data || []);
+        setFormData({})
         // Optionally, perform any other actions upon successful save
       })
       .catch(error => {

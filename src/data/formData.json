@@ -2,6 +2,14 @@
   {
     "firstname": "Ayush",
     "lastname": "Kotadiya",
+    "age": "20",
+    "termsandconditions": "on",
+    "gender": "Male",
+    "country": "Us"
+  },
+  {
+    "firstname": "Ayush",
+    "lastname": "Kotadiya",
     "age": "10",
     "termsandconditions": "off",
     "gender": "Male",
