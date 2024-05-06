@@ -1,69 +1,90 @@
 {
-    "fields": [
+    "steps": [
       {
-        "type": "text",
-        "label": "First name",
-        "placeholder": "Enter your first name",
-        "value": "",
-        "name": "firstname"
-      },
-      {
-        "type": "text",
-        "label": "Last name",
-        "placeholder": "Enter your last name",
-        "value": "",
-        "name": "lastname"
-      },
-      {
-        "type": "checkbox",
-        "label": "Terms and Conditions",
-        "value": "",
-        "name": "termsandconditions"
-      },
-      {
-        "type": "radio",
-        "label": "Gender",
-        "options": [
+        "label" : "Profile",
+        "fields": [
           {
-            "value": "Male",
-            "label": "Male"
+            "type": "text",
+            "label": "First name",
+            "placeholder": "Enter your first name",
+            "value": "",
+            "name": "firstname"
           },
           {
-            "value": "Female",
-            "label": "Female"
+            "type": "text",
+            "label": "Last name",
+            "placeholder": "Enter your last name",
+            "value": "",
+            "name": "lastname"
           }
-        ],
-        "name": "gender"
+        ]
       },
       {
-        "type": "select",
-        "label": "Age",
-        "options": [
+        "label" : "Terms and Conditions",
+        "fields": [
           {
-            "value": "10",
-            "label": "10"
-          },
-          {
-            "value": "20",
-            "label": "20"
+            "type": "checkbox",
+            "label": "Terms and Conditions",
+            "value": "",
+            "name": "termsandconditions"
           }
-        ],
-        "name": "age"
+        ]
       },
       {
-        "type": "select",
-        "label": "Country",
-        "options": [
+        "label" : "Gender",
+        "fields": [
           {
-            "value": "India",
-            "label": "India"
+            "type": "radio",
+            "label": "Gender",
+            "options": [
+              {
+                "value": "Male",
+                "label": "Male"
+              },
+              {
+                "value": "Female",
+                "label": "Female"
+              }
+            ],
+            "name": "gender"
+          }
+        ]
+      },
+      {
+        "label" : "Birth",
+        "fields": [
+          {
+            "type": "select",
+            "label": "Age",
+            "options": [
+              {
+                "value": "10",
+                "label": "10"
+              },
+              {
+                "value": "20",
+                "label": "20"
+              }
+            ],
+            "name": "age"
           },
           {
-            "value": "Us",
-            "label": "Us"
+            "type": "select",
+            "label": "Country",
+            "options": [
+              {
+                "value": "India",
+                "label": "India"
+              },
+              {
+                "value": "Us",
+                "label": "Us"
+              }
+            ],
+            "name": "country"
           }
-        ],
-        "name": "country"
+        ]
       }
     ]
   }
+  
