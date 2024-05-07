@@ -1,6 +1,8 @@
 "use client"
-import React, { ChangeEvent, useState } from 'react';
+import React from 'react';
+import { useFormik } from 'formik';
 import { Button, Step, StepLabel, Stepper, Typography, FormControlLabel, Checkbox, RadioGroup, Radio, Select, MenuItem, FormControl, InputLabel, FormLabel, TextField } from '@mui/material';
+import Image from 'next/image';
 
 interface Field {
     type: 'text' | 'checkbox' | 'radio' | 'select'; // Restricting field types to known types
@@ -20,30 +22,67 @@ interface Form {
     steps: Step[];
 }
 
+const SidebarData = [
+    {
+        id: 1,
+        image: "/svg/cube.svg",
+        title: "categories"
+    },
+    {
+        id: 2,
+        image: "/svg/setting.svg",
+        title: "setting"
+    }
+]
+
+const ImageData = [
+    {
+        id: 1,
+        image: "/svg/linkedin.svg"
+    },
+    {
+        id: 2,
+        image: "/svg/instagram.svg"
+    },
+    {
+        id: 3,
+        image: "/svg/twitter.svg"
+    },
+    {
+        id: 4,
+        image: "/svg/youtube.svg"
+    }
+]
+
 const StepperForm = ({ steps }: Form) => {
-    const [activeStep, setActiveStep] = useState(0);
-    // Setting initial state type to FormDataType
-    const [formData, setFormData] = useState<{ [key: string]: string | boolean }>({});
+    const [activeStep, setActiveStep] = React.useState(0);
+    const [formDataArray, setFormDataArray] = React.useState<any[]>([]); // State to hold form data array
+
+    const formik: any = useFormik({
+        initialValues: {
+            firstname: '',
+            lastname: '',
+            termsandconditions: false,
+            gender: '',
+            age: '',
+            country: ''
+        },
+        onSubmit: values => {
+            setFormDataArray(prevData => [...prevData, values]);
+            console.log(values);
+        },
+    });
 
     const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        if (activeStep === steps.length - 1) {
+            formik.handleSubmit();
+        } else {
+            setActiveStep(prevActiveStep => prevActiveStep + 1);
+        }
     };
 
     const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
-
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const { name, value, type } = e.target;
-        // Use appropriate type for formData based on field type
-        setFormData(prevData => ({
-            ...prevData,
-            [name]: type === 'checkbox' ? e.target.checked : value
-        }));
-    };
-
-    const handleSubmit = () => {
-        console.log('Form data:', formData);
+        setActiveStep(prevActiveStep => prevActiveStep - 1);
     };
 
     const renderStepFields = () => {
@@ -56,14 +95,21 @@ const StepperForm = ({ steps }: Form) => {
                             <label className="block text-gray-700 text-lg font-bold mb-2">
                                 {field.label}
                             </label>
-                            <TextField label={field.label} placeholder={field.placeholder} onChange={handleInputChange} className="shadow appearance-none rounded w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                            <TextField
+                                label={field.label}
+                                placeholder={field.placeholder}
+                                name={field.name}
+                                onChange={formik.handleChange}
+                                value={formik.values[field.name]}
+                                className="shadow appearance-none rounded w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            />
                         </div>
                     );
                 case 'checkbox':
                     return (
                         <div key={index} className="mb-4 text-black">
                             <FormControlLabel
-                                control={<Checkbox color="primary" name={field.name} checked={formData[field.name] as any || false} onChange={handleInputChange} />}
+                                control={<Checkbox color="primary" name={field.name} checked={formik.values[field.name] as boolean} onChange={formik.handleChange} />}
                                 label={field.label}
                             />
                         </div>
@@ -76,8 +122,8 @@ const StepperForm = ({ steps }: Form) => {
                                 <RadioGroup
                                     aria-label={field.label}
                                     name={field.name}
-                                    value={formData[field.name] || ''}
-                                    onChange={handleInputChange}
+                                    value={formik.values[field.name] as string}
+                                    onChange={formik.handleChange}
                                 >
                                     {field.options?.map((option, optionIndex) => (
                                         <FormControlLabel key={optionIndex} value={option.value} control={<Radio />} label={option.label} />
@@ -88,14 +134,15 @@ const StepperForm = ({ steps }: Form) => {
                     );
                 case 'select':
                     return (
-                        <div key={index} className="mb-4">
+                        <div key={index} className="mb-4 text-black">
                             <FormControl fullWidth>
                                 <InputLabel id={`demo-simple-select-label-${field.label}`}>{field.label}</InputLabel>
                                 <Select
-                                    labelId={field.label}
+                                    labelId={`demo-simple-select-label-${field.label}`}
                                     id={field.name}
-                                    value={formData[field.name] || ''}
-                                    onChange={handleInputChange as any}
+                                    name={field.name}
+                                    onChange={formik.handleChange}
+                                    value={formik.values[field.name] as string}
                                 >
                                     {field.options?.map((option, optionIndex) => (
                                         <MenuItem key={optionIndex} value={option.value}>
@@ -122,10 +169,39 @@ const StepperForm = ({ steps }: Form) => {
                 </div>
             </div>
 
-            <div className="flex">
+            <div className="flex max-h-[calc(100vh-116px)]">
                 {/* Sidebar */}
-                <div className="w-[280px] h-[calc(100vh-80px)] p-4 bg-gray-200">
-                    <h2 className="text-lg font-bold mb-4">Sidebar</h2>
+                <div className="w-[400px] flex flex-col gap-2 h-[calc(100vh-116px)] p-2 bg-gray-200 shadow-xl">
+                    <div className=' w-full 2xl:min-h-[400px] 3xl:min-h-[600px] border-b border-b-[#1f2937]'>
+                        <div className='flex flex-col gap-2 pl-4 pt-4'>
+                            {SidebarData.map((item, index) => (
+                                <div key={index} className='flex gap-3'>
+                                    <Image
+                                        src={item.image}
+                                        alt='categories'
+                                        width={25}
+                                        height={25}
+                                    />
+                                    <span className='text-gray-800 text-[18px] font-medium'>{item.title}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    <div className=' w-full flex items-end pb-7 pl-4 2xl:min-h-[calc(100vh-532px)] 3xl:min-h-[calc(100vh-732px)] '>
+                        <div className='flex h-fit items-center gap-2'>
+                            {ImageData.map((item, index) => (
+                                <div className='cursor-pointer' key={index}>
+                                    <Image
+                                        src={item.image}
+                                        alt='icon'
+                                        width={25}
+                                        height={25}
+                                        className='object-cover'
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                     {/* Add sidebar content or navigation links here */}
                 </div>
 
@@ -138,23 +214,14 @@ const StepperForm = ({ steps }: Form) => {
                             </Step>
                         ))}
                     </Stepper>
-                    <div className='flex items-center mt-10 xl:pl-[100px] 2xl:pl-[135px] 3xl:pl-[180px]'>
-                        <div className='w-[700px]'>
-                            {activeStep === steps.length ? (
-                                <div>
-                                    <Typography variant="h3" gutterBottom>All steps completed</Typography>
-                                    <Button variant="contained" color="primary" onClick={handleSubmit}>Submit</Button>
-                                </div>
-                            ) : (
-                                <div>
-                                    {/* <Typography variant="h4" gutterBottom>{steps[activeStep].label}</Typography> */}
-                                    {renderStepFields()}
-
-                                </div>
-                            )}
+                    <div className='flex items-center mt-10 xl:pl-[60px] 2xl:pl-[95px] 3xl:pl-[140px]'>
+                        <div className='3xl:w-[600px] w-[450px]'>
+                            <div>
+                                {activeStep === steps.length ? "" : renderStepFields()}
+                            </div>
                         </div>
                     </div>
-                    <div className='flex justify-end items-end xl:pr-[100px] 2xl:pr-[135px] 3xl:pr-[180px] pt-[200px] '>
+                    <div className='flex justify-end items-end xl:pr-[60px] 2xl:pr-[95px] 3xl:pr-[140px] 2xl:pt-[100px] 3xl:pt-[200px] '>
                         <Button disabled={activeStep === 0} onClick={handleBack} className="mr-4">
                             Back
                         </Button>
@@ -163,7 +230,18 @@ const StepperForm = ({ steps }: Form) => {
                         </Button>
                     </div>
                 </div>
+                <div className="w-[500px] flex flex-col gap-2 h-[calc(100vh-116px)] p-2 bg-gray-200 shadow-xl">
+                    <div className=' w-full 2xl:min-h-[300px] 3xl:min-h-[400px] border-b border-b-[#1f2937]'>1</div>
+                    <div className=' w-full 2xl:min-h-[calc(100vh-432px)] 3xl:min-h-[calc(100vh-532px)]'>1</div>
+                    <div></div>
+                    {/* Add sidebar content or navigation links here */}
+                </div>
             </div>
+            <footer className="bg-gray-800 text-white p-4">
+                <div className="container mx-auto">
+                    <p className="text-center">Your footer content here</p>
+                </div>
+            </footer>
         </div>
     );
 };
