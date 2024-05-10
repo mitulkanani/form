@@ -25,6 +25,19 @@ import { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
+type InitialValues = {
+  label: string;
+  type: string;
+  name: string;
+  placeholder: string;
+  value: string;
+  options?:
+    | {
+        value: string;
+        label: string;
+      }[]
+    | [];
+};
 const AdminForm = () => {
   const [data, setData] = useState<any>([]);
   const [fieldVal, setFieldVal] = useState("");
@@ -107,6 +120,14 @@ const AdminForm = () => {
     }
   };
 
+  const initialValues: InitialValues = {
+    label: "",
+    type: "text",
+    name: "",
+    placeholder: "",
+    value: "",
+    options: [{ value: "", label: "" }],
+  };
   const {
     handleSubmit,
     handleChange,
@@ -115,14 +136,7 @@ const AdminForm = () => {
     values,
     setFieldValue,
   } = useFormik({
-    initialValues: {
-      label: "",
-      type: "text",
-      name: "",
-      placeholder: "",
-      value: "",
-      options: [{ value: "", label: "" }],
-    },
+    initialValues: initialValues,
     onSubmit: (value) => {
       const data = value;
       if (values.type === "text" && data.options) {
@@ -341,8 +355,6 @@ const AdminForm = () => {
           }}
           aria-labelledby='modal-modal-title'
           aria-describedby='modal-modal-description'
-          disableEscapeKeyDown={true}
-          disableBackdropClick={false}
         >
           <form
             onSubmit={handleSubmit}
@@ -431,7 +443,7 @@ const AdminForm = () => {
                       aria-label='add to shopping cart'
                       onClick={() => {
                         setFieldValue("options", [
-                          ...values?.options,
+                          ...(values?.options || []),
                           { label: "" },
                         ]);
                       }}
@@ -464,7 +476,7 @@ const AdminForm = () => {
                         color='error'
                         aria-label='add to shopping cart'
                         onClick={() => {
-                          values?.options.splice(index, 1);
+                          if (values?.options) values?.options.splice(index, 1);
                           setFieldValue("options", values?.options);
                         }}
                       >
