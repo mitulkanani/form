@@ -7,6 +7,7 @@ const SidebarData = [
     id: 1,
     image: "/svg/cube.svg",
     title: "categories",
+    href:"/"
   },
   {
     id: 2,

@@ -118,6 +118,18 @@
           "value": "dwe"
         }
       ]
+    },
+    {
+      "label": "Test",
+      "fields": [
+        {
+          "label": "Media",
+          "type": "text",
+          "name": "test",
+          "placeholder": "test",
+          "value": "test"
+        }
+      ]
     }
   ]
 }
