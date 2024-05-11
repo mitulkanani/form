@@ -4,13 +4,24 @@ import path from "path";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const filePath = path.join(process.cwd(), "/src/data/form.json");
-  const jsonData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-  console.log("req.body", req.body);
-  const body = JSON.parse(req.body);
-  jsonData.steps[body.index].fields.push(body.data);
-  // jsonData.steps.push(JSON.parse(req.body));
 
-  fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 2));
+  fs.readFile(filePath, "utf8", (err, data) => {
+    if (err) {
+      console.error("Error reading file:", err);
+      res.status(500).json({ error: "Internal Server Error" });
+      return;
+    }
 
-  res.status(200).json({ message: "Data added successfully" });
+    try {
+      const jsonData = JSON.parse(data);
+      const body = JSON.parse(req.body);
+      jsonData.steps[body.index].fields.push(body.data);
+      jsonData.steps.push(JSON.parse(req.body));
+      fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 2));
+      res.status(200).json({ message: "Data added successfully" });
+    } catch (error) {
+      console.error("Error parsing JSON:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
 }
